@@ -60,7 +60,13 @@
 
 - (IBAction)reorderBarButtonItemPressed:(UIBarButtonItem *)sender
 {
+    if (self.tableView.editing == YES) {
+        [self.tableView setEditing:NO animated:YES];
+    } else {
+        [self.tableView setEditing:YES animated:YES];
+    }
     
+    // for this to work need 2 UITABLEIVIEW delegate methods
 }
 
 - (IBAction)addTaskBarButtonItemPressed:(UIBarButtonItem *)sender
@@ -139,6 +145,17 @@
     [self.tableView reloadData];
 }
 
+-(void)saveTasks
+{
+    NSMutableArray *taskObjectsAsPropertyLists = [[NSMutableArray alloc] init];
+    
+    for (int x = 0; x < [self.taskObjects count]; x++) {
+        [taskObjectsAsPropertyLists addObject:[self taskObjectAsPropertyList:self.taskObjects[x]]];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:taskObjectsAsPropertyLists forKey:TASK_OBJECTS_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -214,5 +231,22 @@
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"toDetailTaskViewControllerSegue" sender:indexPath];
+}
+
+
+// For reorder
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+// For reorder
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    NWTask *task = self.taskObjects[sourceIndexPath.row];
+    [self.taskObjects removeObjectAtIndex:sourceIndexPath.row];
+    [self.taskObjects insertObject:task atIndex:destinationIndexPath.row];
+    [self saveTasks];
 }
 @end
