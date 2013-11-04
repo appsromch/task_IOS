@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NWAddTaskViewController.h"
+#import "NWDetailTaskViewController.h"
 
 @interface NWViewController : UIViewController < NWAddTaskViewControllerDelegate, UITableViewDelegate, UITableViewDataSource >
 

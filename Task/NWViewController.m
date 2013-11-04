@@ -47,6 +47,12 @@
     if ([segue.destinationViewController isKindOfClass:[NWAddTaskViewController class]]) {
         NWAddTaskViewController *addTaskVC = segue.destinationViewController;
         addTaskVC.delegate = self;
+    } else if ([segue.destinationViewController isKindOfClass:[NWDetailTaskViewController class]]) {
+        NWDetailTaskViewController *detailTaskVC = segue.destinationViewController;
+        
+        NSIndexPath *path = sender;
+        NWTask *task = self.taskObjects[path.row];
+        detailTaskVC.task = task;
     }
 }
 
@@ -54,6 +60,7 @@
 
 - (IBAction)reorderBarButtonItemPressed:(UIBarButtonItem *)sender
 {
+    
 }
 
 - (IBAction)addTaskBarButtonItemPressed:(UIBarButtonItem *)sender
@@ -170,12 +177,16 @@
 
 #pragma mark - UITableViewDelegate
 
+
+// Tapping on cell
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NWTask *task = self.taskObjects[indexPath.row];
     [self updateCompletionOfTask:task forIndexPath:indexPath];
     
 }
+
+// To be able to swipe to delete
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -196,5 +207,12 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+}
+
+
+// Accessory button Pressed
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"toDetailTaskViewControllerSegue" sender:indexPath];
 }
 @end
