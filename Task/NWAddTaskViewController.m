@@ -35,9 +35,31 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)addTaskButtonPressed:(UIButton *)sender {
+
+#pragma - IBActions
+
+- (IBAction)addTaskButtonPressed:(UIButton *)sender
+{
+    // Protocol method
+    [self.delegate didAddTask:[self returnNewTaskObject]];
 }
 
-- (IBAction)cancelButtonPressed:(UIButton *)sender {
+- (IBAction)cancelButtonPressed:(UIButton *)sender
+{
+    // Protocol method
+    [self.delegate didCancel];
+}
+
+#pragma - Helper Methods
+
+-(NWTask *)returnNewTaskObject
+{
+    NWTask *task = [[NWTask alloc] init];
+    task.title = self.textField.text;
+    task.description = self.textView.text;
+    task.date = self.datePicker.date;
+    task.isCompleted = NO;
+    
+    return task;
 }
 @end

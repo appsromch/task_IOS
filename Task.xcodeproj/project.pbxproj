@@ -24,6 +24,7 @@
 		01B8C0F018284B7900C50491 /* NWAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8C0EF18284B7900C50491 /* NWAddTaskViewController.m */; };
 		01B8C0F318284B9400C50491 /* NWDetailTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8C0F218284B9400C50491 /* NWDetailTaskViewController.m */; };
 		01B8C0F618284B9C00C50491 /* NWEditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8C0F518284B9C00C50491 /* NWEditTaskViewController.m */; };
+		01B8C0FA1828503300C50491 /* NWTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8C0F91828503300C50491 /* NWTask.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		01B8C0F218284B9400C50491 /* NWDetailTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWDetailTaskViewController.m; sourceTree = "<group>"; };
 		01B8C0F418284B9C00C50491 /* NWEditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWEditTaskViewController.h; sourceTree = "<group>"; };
 		01B8C0F518284B9C00C50491 /* NWEditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWEditTaskViewController.m; sourceTree = "<group>"; };
+		01B8C0F81828503300C50491 /* NWTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWTask.h; sourceTree = "<group>"; };
+		01B8C0F91828503300C50491 /* NWTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWTask.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +135,7 @@
 				01B8C0F518284B9C00C50491 /* NWEditTaskViewController.m */,
 				01B8C0CE18284A3200C50491 /* NWViewController.h */,
 				01B8C0CF18284A3200C50491 /* NWViewController.m */,
+				01B8C0F71828502100C50491 /* Models */,
 				01B8C0D118284A3200C50491 /* Images.xcassets */,
 				01B8C0C018284A3200C50491 /* Supporting Files */,
 			);
@@ -165,6 +169,15 @@
 				01B8C0E118284A3200C50491 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		01B8C0F71828502100C50491 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				01B8C0F81828503300C50491 /* NWTask.h */,
+				01B8C0F91828503300C50491 /* NWTask.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01B8C0FA1828503300C50491 /* NWTask.m in Sources */,
 				01B8C0F618284B9C00C50491 /* NWEditTaskViewController.m in Sources */,
 				01B8C0F018284B7900C50491 /* NWAddTaskViewController.m in Sources */,
 				01B8C0D018284A3200C50491 /* NWViewController.m in Sources */,
