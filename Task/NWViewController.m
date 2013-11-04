@@ -23,7 +23,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    // conform to tableview data source protocol & delegate
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    NSArray *tasksAsPropertyLists = [[NSUserDefaults standardUserDefaults] arrayForKey:TASK_OBJECTS_KEY];
+    
+    for (NSDictionary *dictionary in tasksAsPropertyLists) {
+        NWTask *taskObject = [self taskObjectForDictioanry:dictionary];
+        [self.taskObjects addObject:taskObject];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -32,10 +42,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)reorderBarButtonItemPressed:(UIBarButtonItem *)sender {
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[NWAddTaskViewController class]]) {
+        NWAddTaskViewController *addTaskVC = segue.destinationViewController;
+        addTaskVC.delegate = self;
+    }
 }
 
-- (IBAction)addTaskBarButtonItemPressed:(UIBarButtonItem *)sender {
+#pragma mark - IBActions
+
+- (IBAction)reorderBarButtonItemPressed:(UIBarButtonItem *)sender
+{
+}
+
+- (IBAction)addTaskBarButtonItemPressed:(UIBarButtonItem *)sender
+{
+    [self performSegueWithIdentifier:@"toAddTaskViewControllerSegue" sender:nil];
 }
 
 #pragma mark - NWAddTaskViewControllerDelegate
@@ -69,5 +92,43 @@
     NSDictionary *dictionary = @{TASK_TITLE : task.title, TASK_DESCRIPTION : task.description, TASK_DATE : task.date, TASK_COMPLETION : @(task.isCompleted)};
     
     return dictionary;
+}
+
+-(NWTask *)taskObjectForDictioanry:(NSDictionary *)dictionary
+{
+    NWTask *taskObject = [[NWTask alloc] initWithData:dictionary];
+    return taskObject;
+}
+
+
+#pragma mark - UITableViewDataSource
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.taskObjects count];
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // identifer set in storyboard  
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    // Configure cell
+    
+    NWTask *task = self.taskObjects[indexPath.row];
+    cell.textLabel.text = task.title;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *stringFromDate = [formatter stringFromDate:task.date];
+    cell.detailTextLabel.text = stringFromDate;
+    
+    
+    return cell;
 }
 @end
