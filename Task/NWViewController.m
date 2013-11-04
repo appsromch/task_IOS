@@ -101,6 +101,37 @@
 }
 
 
+-(BOOL)isDateGreaterThanDate:(NSDate *)date and:(NSDate *)toDate
+{
+    NSTimeInterval dateInterval = [date timeIntervalSinceReferenceDate];
+    NSTimeInterval toDateInterval = [toDate timeIntervalSinceReferenceDate];
+    
+    if (dateInterval > toDateInterval) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+
+-(void)updateCompletionOfTask:(NWTask *)task forIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableArray *taskObjectsAsPropertyList = [[[NSUserDefaults standardUserDefaults] arrayForKey:TASK_OBJECTS_KEY] mutableCopy];
+    
+    if (!taskObjectsAsPropertyList) taskObjectsAsPropertyList = [[NSMutableArray alloc] init];
+    
+    [taskObjectsAsPropertyList removeObjectAtIndex:indexPath.row];
+    
+    if (task.isCompleted == YES) task.isCompleted = NO;
+    else task.isCompleted = YES;
+    [taskObjectsAsPropertyList insertObject:[self taskObjectAsPropertyList:task] atIndex:indexPath.row];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:taskObjectsAsPropertyList forKey:TASK_OBJECTS_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self.tableView reloadData];
+}
+
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -115,7 +146,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // identifer set in storyboard  
+    // identifer set in storyboard
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -128,7 +159,21 @@
     NSString *stringFromDate = [formatter stringFromDate:task.date];
     cell.detailTextLabel.text = stringFromDate;
     
+    BOOL isOverDue = [self isDateGreaterThanDate:[NSDate date] and:task.date];
+    if (task.isCompleted) cell.backgroundColor = [UIColor greenColor];
+    else if (isOverDue) cell.backgroundColor = [UIColor redColor];
+    else cell.backgroundColor = [UIColor yellowColor];
     
     return cell;
+}
+
+
+#pragma mark - UITableViewDelegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NWTask *task = self.taskObjects[indexPath.row];
+    [self updateCompletionOfTask:task forIndexPath:indexPath];
+    
 }
 @end
