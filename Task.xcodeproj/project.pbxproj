@@ -21,6 +21,9 @@
 		01B8C0DB18284A3200C50491 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B8C0BD18284A3200C50491 /* UIKit.framework */; };
 		01B8C0E318284A3200C50491 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01B8C0E118284A3200C50491 /* InfoPlist.strings */; };
 		01B8C0E518284A3200C50491 /* TaskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8C0E418284A3200C50491 /* TaskTests.m */; };
+		01B8C0F018284B7900C50491 /* NWAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8C0EF18284B7900C50491 /* NWAddTaskViewController.m */; };
+		01B8C0F318284B9400C50491 /* NWDetailTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8C0F218284B9400C50491 /* NWDetailTaskViewController.m */; };
+		01B8C0F618284B9C00C50491 /* NWEditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8C0F518284B9C00C50491 /* NWEditTaskViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,12 @@
 		01B8C0E018284A3200C50491 /* TaskTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TaskTests-Info.plist"; sourceTree = "<group>"; };
 		01B8C0E218284A3200C50491 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01B8C0E418284A3200C50491 /* TaskTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskTests.m; sourceTree = "<group>"; };
+		01B8C0EE18284B7900C50491 /* NWAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWAddTaskViewController.h; sourceTree = "<group>"; };
+		01B8C0EF18284B7900C50491 /* NWAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWAddTaskViewController.m; sourceTree = "<group>"; };
+		01B8C0F118284B9400C50491 /* NWDetailTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWDetailTaskViewController.h; sourceTree = "<group>"; };
+		01B8C0F218284B9400C50491 /* NWDetailTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWDetailTaskViewController.m; sourceTree = "<group>"; };
+		01B8C0F418284B9C00C50491 /* NWEditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWEditTaskViewController.h; sourceTree = "<group>"; };
+		01B8C0F518284B9C00C50491 /* NWEditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWEditTaskViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +124,12 @@
 				01B8C0C818284A3200C50491 /* NWAppDelegate.h */,
 				01B8C0C918284A3200C50491 /* NWAppDelegate.m */,
 				01B8C0CB18284A3200C50491 /* Main.storyboard */,
+				01B8C0EE18284B7900C50491 /* NWAddTaskViewController.h */,
+				01B8C0EF18284B7900C50491 /* NWAddTaskViewController.m */,
+				01B8C0F118284B9400C50491 /* NWDetailTaskViewController.h */,
+				01B8C0F218284B9400C50491 /* NWDetailTaskViewController.m */,
+				01B8C0F418284B9C00C50491 /* NWEditTaskViewController.h */,
+				01B8C0F518284B9C00C50491 /* NWEditTaskViewController.m */,
 				01B8C0CE18284A3200C50491 /* NWViewController.h */,
 				01B8C0CF18284A3200C50491 /* NWViewController.m */,
 				01B8C0D118284A3200C50491 /* Images.xcassets */,
@@ -250,9 +265,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01B8C0F618284B9C00C50491 /* NWEditTaskViewController.m in Sources */,
+				01B8C0F018284B7900C50491 /* NWAddTaskViewController.m in Sources */,
 				01B8C0D018284A3200C50491 /* NWViewController.m in Sources */,
 				01B8C0C618284A3200C50491 /* main.m in Sources */,
 				01B8C0CA18284A3200C50491 /* NWAppDelegate.m in Sources */,
+				01B8C0F318284B9400C50491 /* NWDetailTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

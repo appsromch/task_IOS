@@ -10,4 +10,7 @@
 
 @interface NWViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)reorderBarButtonItemPressed:(UIBarButtonItem *)sender;
+- (IBAction)addTaskBarButtonItemPressed:(UIBarButtonItem *)sender;
 @end
