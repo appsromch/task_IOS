@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "NWTask.h"
+#import "NWEditTaskViewController.h"
 
-@interface NWDetailTaskViewController : UIViewController
+@protocol NWDetailViewControllerDelegate <NSObject>
+
+-(void)updateTask;
+
+@end
+
+@interface NWDetailTaskViewController : UIViewController < NWEditTaskViewControllerDelegate >
+
+@property (weak, nonatomic) id <NWDetailViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) NWTask *task;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;

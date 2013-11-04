@@ -10,7 +10,7 @@
 #import "NWAddTaskViewController.h"
 #import "NWDetailTaskViewController.h"
 
-@interface NWViewController : UIViewController < NWAddTaskViewControllerDelegate, UITableViewDelegate, UITableViewDataSource >
+@interface NWViewController : UIViewController < NWAddTaskViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NWDetailViewControllerDelegate >
 
 @property (strong, nonatomic) NSMutableArray *taskObjects;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

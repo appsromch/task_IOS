@@ -53,6 +53,7 @@
         NSIndexPath *path = sender;
         NWTask *task = self.taskObjects[path.row];
         detailTaskVC.task = task;
+        detailTaskVC.delegate = self;
     }
 }
 
@@ -248,5 +249,12 @@
     [self.taskObjects removeObjectAtIndex:sourceIndexPath.row];
     [self.taskObjects insertObject:task atIndex:destinationIndexPath.row];
     [self saveTasks];
+}
+
+#pragma mark - NWDetailTaskViewContorllerDelegate
+-(void)updateTask
+{
+    [self saveTasks];
+    [self.tableView reloadData];
 }
 @end

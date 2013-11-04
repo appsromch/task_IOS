@@ -26,7 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	self.textField.text = self.task.title;
+    self.textView.text = self.task.description;
+    self.datePicker.date = self.task.date;
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,6 +37,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)saveBarButtonItemPressed:(UIBarButtonItem *)sender {
+- (IBAction)saveBarButtonItemPressed:(UIBarButtonItem *)sender
+{
+    [self updateTask];
+    [self.delegate didUpdateTask];
+}
+
+-(void)updateTask
+{
+    self.task.title = self.textField.text;
+    self.task.description = self.textView.text;
+    self.task.date = self.datePicker.date;
 }
 @end
